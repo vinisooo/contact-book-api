@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany, JoinTable } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany, JoinTable, BeforeInsert, BeforeUpdate } from "typeorm";
 import { Contact } from "./contacts.entities";
+import { hashSync } from "bcryptjs";
 
 @Entity("clients")
 export class Client {
@@ -18,11 +19,18 @@ export class Client {
     @Column({type: "varchar", length: 20, nullable: false})
     phone: string
 
-    @CreateDateColumn({type: "varchar"})
-    created_at: Date
+    @CreateDateColumn({type: "date"})
+    createdAt: string
 
     @OneToMany(()=> Contact, (contact) => contact.client)
     @JoinTable()
     contacts: Contact[]
+
+    @BeforeInsert()
+    @BeforeUpdate()
+    encryptInsert()
+    {
+        this.password = hashSync(this.password, 10)
+    }
 
 }
