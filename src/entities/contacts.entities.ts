@@ -15,8 +15,8 @@ export class Contact{
     @Column({type: "varchar", length: 20, nullable: false})
     phone: string
 
-    @CreateDateColumn({type: "varchar"})
-    createdAt: Date
+    @CreateDateColumn({type: "date"})
+    createdAt: string
 
     @ManyToOne(()=>Client, (client)=> client.contacts)
     client: Client
