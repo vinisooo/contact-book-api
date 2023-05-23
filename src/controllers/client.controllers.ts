@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import createClientService from "../services/client/createClient.service";
 import getAllClientsService from "../services/client/getAllClients.service";
+import clientLoginService from "../services/client/clientLogin.service";
 
 const createClientController = async(req: Request, res: Response):Promise<Response> => {
     const client = await createClientService(req.body);
@@ -20,4 +21,12 @@ const getAllClientsController = async(req: Request, res: Response): Promise<Resp
     return res.status(200).json(clients);
 }
 
-export { createClientController, retrieveClientController, getAllClientsController };
+const clientLoginController = async(req: Request, res: Response): Promise<Response> => {
+    const token:string = await clientLoginService(req.body);
+
+    return res.status(201).json({
+        "accessToken": token
+    })
+}
+
+export { createClientController, retrieveClientController, getAllClientsController, clientLoginController };
