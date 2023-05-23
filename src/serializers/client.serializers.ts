@@ -1,5 +1,5 @@
 import z from "zod";
-import { noClientContactSerializer } from "./contacts.serializer";
+import { noClientContactSerializer } from "./contact.serializers";
 
 const clientSerializer = z.object({
     id: z.number(),
@@ -11,7 +11,7 @@ const clientSerializer = z.object({
     contacts: z.array(noClientContactSerializer)
 })
 
-const clientReqSerializer = clientSerializer.omit({id: true, createdAt: true});
+const clientReqSerializer = clientSerializer.omit({id: true, createdAt: true, contacts: true});
 const noPasswordClientSerializer = clientSerializer.omit({password: true});
 
 export {clientSerializer, clientReqSerializer, noPasswordClientSerializer}

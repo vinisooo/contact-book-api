@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { clientSerializer } from "./clients.serializer";
+import { clientSerializer } from "./client.serializers";
 
 const contactSerializer: z.ZodObject<any> = z.object({
     id: z.number(),

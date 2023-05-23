@@ -7,7 +7,7 @@ export class Client {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column({type: "varchar", length: 256, nullable: false, unique: true})
+    @Column({type: "varchar", length: 256, nullable: false})
     name: string
 
     @Column({type: "varchar", length: 256, nullable: false, unique: true})
