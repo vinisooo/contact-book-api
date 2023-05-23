@@ -3,7 +3,7 @@ import { AppDataSource } from "../../data-source";
 import { iClientReq } from "../../interfaces/client.interfaces";
 import { Client } from "../../entities/clients.entities";
 
-export const createClientService = async(data: iClientReq) => {
+const createClientService = async(data: iClientReq) => {
     const clientRepository = AppDataSource.getRepository(Client);
 
     const client = clientRepository.create(data);
@@ -12,3 +12,5 @@ export const createClientService = async(data: iClientReq) => {
 
     return client;
 }
+
+export default createClientService
