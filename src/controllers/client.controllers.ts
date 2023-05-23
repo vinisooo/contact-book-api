@@ -3,6 +3,7 @@ import createClientService from "../services/client/createClient.service";
 import getAllClientsService from "../services/client/getAllClients.service";
 import clientLoginService from "../services/client/clientLogin.service";
 import updateClientService from "../services/client/updateClient.service";
+import deleteClientService from "../services/client/deleteClient.service";
 
 const createClientController = async(req: Request, res: Response):Promise<Response> => {
     const client = await createClientService(req.body);
@@ -30,10 +31,16 @@ const clientLoginController = async(req: Request, res: Response): Promise<Respon
     })
 }
 
-const clientUpdateController = async(req: Request, res: Response): Promise<Response> => {
+const updateClientController = async(req: Request, res: Response): Promise<Response> => {
     const updatedClient = await updateClientService(req.body, req.clientById);
 
     return res.status(200).json(updatedClient);
 }
 
-export { createClientController, retrieveClientController, getAllClientsController, clientLoginController, clientUpdateController };
+const deleteClientController = async (req: Request, res: Response): Promise<Response>=> {
+    const deletedClient = await deleteClientService(Number(req.params.id));
+
+    return res.status(204).json(deletedClient);
+}
+
+export { createClientController, retrieveClientController, getAllClientsController, clientLoginController, updateClientController, deleteClientController };

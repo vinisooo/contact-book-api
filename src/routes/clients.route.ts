@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { clientLoginController, clientUpdateController, createClientController, getAllClientsController, retrieveClientController } from "../controllers/client.controllers";
+import { clientLoginController, updateClientController, createClientController, getAllClientsController, retrieveClientController, deleteClientController } from "../controllers/client.controllers";
 import validateDataMiddleware from "../middlewares/validateData.middleware";
 import { clientLoginSerializer, clientReqSerializer, clientUpdateSerializer } from "../serializers/client.serializers";
 import checkClientEmailExistsMiddleware from "../middlewares/checkClientEmailExists.middleware";
@@ -11,7 +11,8 @@ const clientRoute: Router = Router();
 
 clientRoute.get("/", getAllClientsController);
 clientRoute.get("/:id", ensureClientExistsMiddleware, retrieveClientController);
-clientRoute.patch("/:id", ensureClientExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, validateDataMiddleware(clientUpdateSerializer),clientUpdateController);
+clientRoute.patch("/:id", ensureClientExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, validateDataMiddleware(clientUpdateSerializer), updateClientController);
+clientRoute.delete("/:id", ensureClientExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, deleteClientController);
 clientRoute.post("/register", validateDataMiddleware(clientReqSerializer), checkClientEmailExistsMiddleware, createClientController);
 clientRoute.post("/login", validateDataMiddleware(clientLoginSerializer), clientLoginController);
 
