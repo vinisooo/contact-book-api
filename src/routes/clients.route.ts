@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createClientController, retrieveClientController } from "../controllers/client.controllers";
+import { createClientController, getAllClientsController, retrieveClientController } from "../controllers/client.controllers";
 import validateDataMiddleware from "../middlewares/validateData.middleware";
 import { clientReqSerializer } from "../serializers/client.serializers";
 import checkClientEmailExistsMiddleware from "../middlewares/checkClientEmailExists.middleware";
@@ -7,6 +7,7 @@ import ensureClientExistsMiddleware from "../middlewares/ensureClientExists.midd
 
 const clientRoute: Router = Router();
 
+clientRoute.get("/", getAllClientsController);
 clientRoute.get("/:id", ensureClientExistsMiddleware, retrieveClientController);
 clientRoute.post("/register", validateDataMiddleware(clientReqSerializer), checkClientEmailExistsMiddleware, createClientController);
 
