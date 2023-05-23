@@ -24,11 +24,8 @@ const ensureClientExistsMiddleware = async(req: Request, res: Response, next: Ne
     if(!client){
         throw new AppError("User ID Does not exist", 404);
     }
-
-    const validatedClientData = noPasswordClientSerializer.parse(client);
-
-    req.clientById = validatedClientData;
-    
+    req.clientById = client;
+    console.log("funcionando .................................................................................................", req.clientById)
     return next();
 }
 
