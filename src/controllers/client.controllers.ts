@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import createClientService from "../services/client/createClient.service";
-import getAllClientsService from "../services/client/getAllCLients.service";
+import getAllClientsService from "../services/client/getAllClients.service";
 
 const createClientController = async(req: Request, res: Response):Promise<Response> => {
     const client = await createClientService(req.body);

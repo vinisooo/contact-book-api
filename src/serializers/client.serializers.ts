@@ -12,7 +12,8 @@ const clientSerializer = z.object({
 })
 
 const clientReqSerializer = clientSerializer.omit({id: true, createdAt: true, contacts: true});
+const clientUpdateSerializer = clientReqSerializer.partial();
 const noPasswordClientSerializer = clientSerializer.omit({password: true});
-const noPasswordNoContactsClientSerializer = noPasswordClientSerializer.omit({contacts: true})
+const noPasswordNoContactsClientSerializer = noPasswordClientSerializer.omit({contacts: true});
 
-export {clientSerializer, clientReqSerializer, noPasswordClientSerializer, noPasswordNoContactsClientSerializer}
+export {clientSerializer, clientReqSerializer, noPasswordClientSerializer, noPasswordNoContactsClientSerializer, clientUpdateSerializer}
