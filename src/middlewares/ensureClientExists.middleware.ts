@@ -25,7 +25,7 @@ const ensureClientExistsMiddleware = async(req: Request, res: Response, next: Ne
         throw new AppError("User ID Does not exist", 404);
     }
     req.clientById = client;
-    console.log("funcionando .................................................................................................", req.clientById)
+    
     return next();
 }
 

@@ -9,7 +9,7 @@ import validateTokenMiddleware from "../middlewares/validateToken.middleware";
 import isAccountOwnerMiddleware from "../middlewares/isAccountOwner.middleware";
 
 import { contactReqSerializer } from "../serializers/contact.serializers";
-import { createContactController } from "../controllers/contact.controllers";
+import { createContactController, getClientContactsController } from "../controllers/contact.controllers";
 
 const clientRoute: Router = Router();
 
@@ -21,6 +21,7 @@ clientRoute.delete("/:id", ensureClientExistsMiddleware, validateTokenMiddleware
 clientRoute.post("/register", validateDataMiddleware(clientReqSerializer), checkClientEmailExistsMiddleware, createClientController);
 clientRoute.post("/login", validateDataMiddleware(clientLoginSerializer), clientLoginController);
 
+clientRoute.get("/:id/contacts", ensureClientExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, getClientContactsController);
 clientRoute.post("/:id/contacts", validateDataMiddleware(contactReqSerializer), ensureClientExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, createContactController);
 
 export default clientRoute;
