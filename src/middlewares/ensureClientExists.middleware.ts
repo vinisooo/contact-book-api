@@ -22,7 +22,7 @@ const ensureClientExistsMiddleware = async(req: Request, res: Response, next: Ne
     });
 
     if(!client){
-        throw new AppError("Client ID Does not exist", 404);
+        throw new AppError("Client Not Found", 404);
     }
     req.clientById = client;
     

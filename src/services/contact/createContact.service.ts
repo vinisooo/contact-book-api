@@ -4,10 +4,18 @@ import { Contact } from "../../entities/contacts.entities";
 import { Client } from "../../entities/clients.entities";
 import { Repository } from "typeorm";
 import { noPasswordNoContactsClientSerializer } from "../../serializers/client.serializers";
+import { AppError } from "../../error";
 
-const createContactService = async(payload: iContactReq, client: Client) => {
+const createContactService = async(payload: iContactReq, clientId: number) => {
     const contactRepository: Repository<Contact> = AppDataSource.getRepository(Contact);
+    const clientRepository: Repository<Client> = AppDataSource.getRepository(Client);
+
+    const client = await clientRepository.findOneBy({id: clientId});
     
+    if(!client){
+        throw new AppError("client not found", 404);
+    }
+
     const contact = contactRepository.create({...payload, client: client});
 
     await contactRepository.save(contact);

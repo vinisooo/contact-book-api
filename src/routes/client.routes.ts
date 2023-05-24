@@ -22,6 +22,5 @@ clientRouter.post("/register", validateDataMiddleware(clientReqSerializer), chec
 clientRouter.post("/login", validateDataMiddleware(clientLoginSerializer), clientLoginController);
 
 clientRouter.get("/:id/contacts", ensureClientExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, getClientContactsController);
-clientRouter.post("/:id/contacts", validateDataMiddleware(contactReqSerializer), ensureClientExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, createContactController);
 
 export default clientRouter;

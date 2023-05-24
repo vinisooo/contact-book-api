@@ -10,7 +10,7 @@ const ensureContactExistsMiddleware = async(req: Request, res: Response, next: N
     const contactId = Number(req.params.id);
 
     if (!contactId){
-        throw new AppError("Contact ID must be a number", 400);
+        throw new AppError("Contact Not Found", 400);
     }
 
     const contact = await contactRepository.findOne({
@@ -23,7 +23,7 @@ const ensureContactExistsMiddleware = async(req: Request, res: Response, next: N
     });
 
     if(!contact){
-        throw new AppError("Contact ID Does not exist", 404);
+        throw new AppError("Contact Not Found", 404);
     }
 
     req.contactById = contact;

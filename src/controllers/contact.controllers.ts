@@ -6,7 +6,7 @@ import deleteContactService from "../services/contact/deleteContact.service";
 import { noPasswordClientSerializer, noPasswordNoContactsClientSerializer } from "../serializers/client.serializers";
 
 const createContactController = async(req: Request, res: Response): Promise<Response> => {
-    const createdContact = await createContactService(req.body, req.clientById);
+    const createdContact = await createContactService(req.body, req.loggedClientId);
     
     return res.status(201).json(createdContact);
 }
