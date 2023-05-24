@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import createContactService from "../services/contact/createContact.service";
 import getClientContactsService from "../services/contact/getClientContacts.service";
 import updateContactService from "../services/contact/updateContact.service";
+import deleteContactService from "../services/contact/deleteContact.service";
 
 const createContactController = async(req: Request, res: Response): Promise<Response> => {
     const createdContact = await createContactService(req.body, req.clientById);
@@ -21,4 +22,10 @@ const updateContactController  = async(req: Request, res: Response): Promise<Res
     return res.status(201).json(updatedContact);
 }
 
-export { createContactController, getClientContactsController, updateContactController }
+const deleteContactController = async(req: Request, res: Response): Promise<Response> => {
+    const deletedContact = deleteContactService(Number(req.params.id));
+
+    return res.status(204).json(deletedContact);
+}
+
+export { createContactController, getClientContactsController, updateContactController, deleteContactController }
