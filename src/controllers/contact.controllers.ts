@@ -3,6 +3,7 @@ import createContactService from "../services/contact/createContact.service";
 import getClientContactsService from "../services/contact/getClientContacts.service";
 import updateContactService from "../services/contact/updateContact.service";
 import deleteContactService from "../services/contact/deleteContact.service";
+import { noPasswordClientSerializer, noPasswordNoContactsClientSerializer } from "../serializers/client.serializers";
 
 const createContactController = async(req: Request, res: Response): Promise<Response> => {
     const createdContact = await createContactService(req.body, req.clientById);
@@ -28,4 +29,12 @@ const deleteContactController = async(req: Request, res: Response): Promise<Resp
     return res.status(204).json(deletedContact);
 }
 
-export { createContactController, getClientContactsController, updateContactController, deleteContactController }
+const retrieveContactController = async(req: Request, res: Response): Promise<Response> =>{
+    const contact = req.contactById;
+    const serializedClient = noPasswordNoContactsClientSerializer.parse(contact.client);
+    const serializedContact = {...contact, client: serializedClient}
+    
+    return res.status(200).json(serializedContact);
+}
+
+export { createContactController, getClientContactsController, updateContactController, deleteContactController, retrieveContactController }
