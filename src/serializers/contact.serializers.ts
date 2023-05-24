@@ -11,5 +11,6 @@ const contactSerializer: z.ZodObject<any> = z.object({
 })
 
 const noClientContactSerializer = contactSerializer.omit({client: true});
+const contactReqSerializer = noClientContactSerializer.omit({id: true, createdAt: true});
 
-export { contactSerializer, noClientContactSerializer };
+export { contactSerializer, noClientContactSerializer, contactReqSerializer };

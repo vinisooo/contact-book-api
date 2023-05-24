@@ -1,0 +1,4 @@
+
+const getClientContacts = (clientId: number) => {
+
+}
