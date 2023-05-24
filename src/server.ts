@@ -3,7 +3,7 @@ import app from "./app";
 
 AppDataSource.initialize()
     .then(async() => {
-        console.log("Connected to DataBase")
+        console.log("Connected to Database")
         const PORT = process.env.PORT || 3000;
 
         app.listen(PORT,()=>{

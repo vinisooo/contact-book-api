@@ -11,17 +11,17 @@ import isAccountOwnerMiddleware from "../middlewares/isAccountOwner.middleware";
 import { contactReqSerializer } from "../serializers/contact.serializers";
 import { createContactController, getClientContactsController } from "../controllers/contact.controllers";
 
-const clientRoute: Router = Router();
+const clientRouter: Router = Router();
 
 
-clientRoute.get("/", getAllClientsController);
-clientRoute.get("/:id", ensureClientExistsMiddleware, retrieveClientController);
-clientRoute.patch("/:id", ensureClientExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, validateDataMiddleware(clientUpdateSerializer), updateClientController);
-clientRoute.delete("/:id", ensureClientExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, deleteClientController);
-clientRoute.post("/register", validateDataMiddleware(clientReqSerializer), checkClientEmailExistsMiddleware, createClientController);
-clientRoute.post("/login", validateDataMiddleware(clientLoginSerializer), clientLoginController);
+clientRouter.get("/", getAllClientsController);
+clientRouter.get("/:id", ensureClientExistsMiddleware, retrieveClientController);
+clientRouter.patch("/:id", ensureClientExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, validateDataMiddleware(clientUpdateSerializer), updateClientController);
+clientRouter.delete("/:id", ensureClientExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, deleteClientController);
+clientRouter.post("/register", validateDataMiddleware(clientReqSerializer), checkClientEmailExistsMiddleware, createClientController);
+clientRouter.post("/login", validateDataMiddleware(clientLoginSerializer), clientLoginController);
 
-clientRoute.get("/:id/contacts", ensureClientExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, getClientContactsController);
-clientRoute.post("/:id/contacts", validateDataMiddleware(contactReqSerializer), ensureClientExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, createContactController);
+clientRouter.get("/:id/contacts", ensureClientExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, getClientContactsController);
+clientRouter.post("/:id/contacts", validateDataMiddleware(contactReqSerializer), ensureClientExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, createContactController);
 
-export default clientRoute;
+export default clientRouter;

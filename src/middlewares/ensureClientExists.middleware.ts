@@ -9,7 +9,7 @@ const ensureClientExistsMiddleware = async(req: Request, res: Response, next: Ne
     const clientId = Number(req.params.id);
 
     if (!clientId){
-        throw new AppError("User ID must be a number", 400);
+        throw new AppError("Client ID must be a number", 400);
     }
 
     const client = await clientRepository.findOne({
@@ -22,7 +22,7 @@ const ensureClientExistsMiddleware = async(req: Request, res: Response, next: Ne
     });
 
     if(!client){
-        throw new AppError("User ID Does not exist", 404);
+        throw new AppError("Client ID Does not exist", 404);
     }
     req.clientById = client;
     
