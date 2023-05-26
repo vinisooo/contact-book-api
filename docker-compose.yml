@@ -9,7 +9,7 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgres://${DOCKER_DB_USER}:${DOCKER_DB_PASSWORD}@host.docker.internal:8080/${DOCKER_DB}
+      - DATABASE_URL=${DOCKER_DB_URL}
       - DATABASE_ENV=${DATABASE_ENV}
       - SECRET_KEY=${SECRET_KEY}
       - EXPIRES_IN=${EXPIRES_IN}
@@ -18,12 +18,12 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      - POSTGRES_USER=${DOCKER_DB_USER}
-      - POSTGRES_PASSWORD=${DOCKER_DB_PASSWORD}
-      - POSTGRES_DB=${DOCKER_DB}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DATABASE}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - '8080:8080'
+      - '5432:5432'
 volumes:
   postgres_data:

@@ -16,7 +16,7 @@ const dataSourceConfig = (): DataSourceOptions => {
 
     const dbEnv: string | undefined = process.env.DATABASE_ENV;
 
-    if(dbEnv === "test"){
+    if(dbEnv !== "dev"){
         return {
             type: 'sqlite',
             database: ':memory:',
