@@ -1,0 +1,29 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3001:3001'
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://${DOCKER_DB_USER}:${DOCKER_DB_PASSWORD}@host.docker.internal:8080/${DOCKER_DB}
+      - DATABASE_ENV=${DATABASE_ENV}
+      - SECRET_KEY=${SECRET_KEY}
+      - EXPIRES_IN=${EXPIRES_IN}
+      - PORT=3001
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=${DOCKER_DB_USER}
+      - POSTGRES_PASSWORD=${DOCKER_DB_PASSWORD}
+      - POSTGRES_DB=${DOCKER_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - '8080:8080'
+volumes:
+  postgres_data:

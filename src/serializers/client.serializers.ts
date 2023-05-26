@@ -1,4 +1,5 @@
 import z from "zod";
+import { phoneRegex } from "./contact.serializers";
 import { noClientContactSerializer } from "./contact.serializers";
 
 const clientSerializer = z.object({
@@ -6,7 +7,7 @@ const clientSerializer = z.object({
     name: z.string().max(256),
     email: z.string().email().max(256),
     password: z.string().max(256),
-    phone: z.string().max(20),
+    phone: z.string().max(20).regex(phoneRegex, "Invalid phone number, must be like: +00 00 000000000"),
     createdAt: z.string(),
     contacts: z.array(noClientContactSerializer)
 })
