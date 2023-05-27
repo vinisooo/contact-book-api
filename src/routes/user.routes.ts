@@ -9,18 +9,18 @@ import validateTokenMiddleware from "../middlewares/validateToken.middleware";
 import isAccountOwnerMiddleware from "../middlewares/isAccountOwner.middleware";
 
 import { contactReqSerializer } from "../serializers/contact.serializers";
-import { createContactController, getUserContactsController } from "../controllers/contact.controllers";
+import { createContactController, getLoggedUserController, getUserContactsController } from "../controllers/contact.controllers";
 
 const userRouter: Router = Router();
 
 
+userRouter.get("/logged/:id", ensureUserExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, getLoggedUserController);
 userRouter.get("/", getAllUsersController);
 userRouter.get("/:id", ensureUserExistsMiddleware, retrieveUserController);
 userRouter.patch("/:id", ensureUserExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, validateDataMiddleware(userUpdateSerializer), updateUserController);
 userRouter.delete("/:id", ensureUserExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, deleteUserController);
 userRouter.post("/register", validateDataMiddleware(userReqSerializer), checkUserEmailExistsMiddleware, createUserController);
 userRouter.post("/login", validateDataMiddleware(userLoginSerializer), userLoginController);
-
 
 userRouter.get("/:id/contacts", ensureUserExistsMiddleware, validateTokenMiddleware, isAccountOwnerMiddleware, getUserContactsController);
 

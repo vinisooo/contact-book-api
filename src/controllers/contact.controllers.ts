@@ -37,4 +37,8 @@ const retrieveContactController = async(req: Request, res: Response): Promise<Re
     return res.status(200).json(serializedContact);
 }
 
-export { createContactController, getUserContactsController, updateContactController, deleteContactController, retrieveContactController }
+const getLoggedUserController = async(req: Request, res: Response): Promise<Response> => {
+    return res.status(200).json(req.userById);
+}
+
+export { createContactController, getUserContactsController, updateContactController, deleteContactController, retrieveContactController, getLoggedUserController }
