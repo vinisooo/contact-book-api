@@ -2,8 +2,8 @@ import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany, Jo
 import { Contact } from "./contacts.entities";
 import { hashSync } from "bcryptjs";
 
-@Entity("clients")
-export class Client {
+@Entity("users")
+export class User {
     @PrimaryGeneratedColumn()
     id: number
 
@@ -22,7 +22,7 @@ export class Client {
     @CreateDateColumn({type: "date"})
     createdAt: string
 
-    @OneToMany(()=> Contact, (contact) => contact.client)
+    @OneToMany(()=> Contact, (contact) => contact.user)
     @JoinTable()
     contacts: Contact[]
 

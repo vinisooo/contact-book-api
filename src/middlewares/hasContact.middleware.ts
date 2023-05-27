@@ -3,7 +3,7 @@ import { AppError } from "../error";
 
 
 const hasContactMiddleware = (req: Request, res: Response, next: NextFunction) => {
-    if(req.loggedClientId != req.contactById.client.id){
+    if(req.loggedUserId != req.contactById.user.id){
         throw new AppError("You do not have permission to access this contact", 401);
     }
 

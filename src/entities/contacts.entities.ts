@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne } from "typeorm";
-import { Client } from "./clients.entities";
+import { User } from "./users.entities";
 
 @Entity("contacts")
 export class Contact{
@@ -18,7 +18,7 @@ export class Contact{
     @CreateDateColumn({type: "date"})
     createdAt: string
 
-    @ManyToOne(()=>Client, (client)=> client.contacts)
-    client: Client
+    @ManyToOne(()=>User, (user)=> user.contacts)
+    user: User
 
 }

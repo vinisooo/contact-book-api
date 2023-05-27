@@ -3,7 +3,7 @@ import { AppDataSource } from "../data-source";
 import { AppError } from "../error";
 import { Repository } from "typeorm";
 import { Contact } from "../entities/contacts.entities";
-import { noPasswordClientSerializer } from "../serializers/client.serializers";
+import { noPasswordUserSerializer } from "../serializers/user.serializers";
 
 const ensureContactExistsMiddleware = async(req: Request, res: Response, next: NextFunction) => {
     const contactRepository: Repository<Contact> = AppDataSource.getRepository(Contact);
@@ -18,7 +18,7 @@ const ensureContactExistsMiddleware = async(req: Request, res: Response, next: N
             id: contactId
         },
         relations:{
-            client: true
+            user: true
         }
     });
 

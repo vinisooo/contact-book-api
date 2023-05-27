@@ -1,27 +1,27 @@
 import { AppDataSource } from "../../data-source";
 import { iContactReq } from "../../interfaces/contact.interfaces";
 import { Contact } from "../../entities/contacts.entities";
-import { Client } from "../../entities/clients.entities";
+import { User } from "../../entities/users.entities";
 import { Repository } from "typeorm";
-import { noPasswordNoContactsClientSerializer } from "../../serializers/client.serializers";
+import { noPasswordNoContactsUserSerializer } from "../../serializers/user.serializers";
 import { AppError } from "../../error";
 
-const createContactService = async(payload: iContactReq, clientId: number) => {
+const createContactService = async(payload: iContactReq, userId: number) => {
     const contactRepository: Repository<Contact> = AppDataSource.getRepository(Contact);
-    const clientRepository: Repository<Client> = AppDataSource.getRepository(Client);
+    const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
-    const client = await clientRepository.findOneBy({id: clientId});
+    const user = await userRepository.findOneBy({id: userId});
     
-    if(!client){
-        throw new AppError("client not found", 404);
+    if(!user){
+        throw new AppError("user not found", 404);
     }
 
-    const contact = contactRepository.create({...payload, client: client});
+    const contact = contactRepository.create({...payload, user: user});
 
     await contactRepository.save(contact);
 
-    const serializedClient = noPasswordNoContactsClientSerializer.parse(contact.client);
-    const serializedContact = {...contact, client: serializedClient}
+    const serializedUser = noPasswordNoContactsUserSerializer.parse(contact.user);
+    const serializedContact = {...contact, user: serializedUser}
 
     return serializedContact;
 }

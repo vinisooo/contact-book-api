@@ -1,14 +1,14 @@
 import { Request, Response, NextFunction } from "express";
 import { AppDataSource } from "../data-source";
-import { Client } from "../entities/clients.entities";
+import { User } from "../entities/users.entities";
 import { AppError } from "../error";
 
-const checkClientEmailExistsMiddleware = async(req: Request, res: Response, next: NextFunction) => {
+const checkUserEmailExistsMiddleware = async(req: Request, res: Response, next: NextFunction) => {
 
-    const clientRepository = AppDataSource.getRepository(Client);
+    const userRepository = AppDataSource.getRepository(User);
     const payload = req.body;
 
-    const emailExists = await clientRepository.exist({
+    const emailExists = await userRepository.exist({
         where:{email: payload.email}
     });
 
@@ -19,4 +19,4 @@ const checkClientEmailExistsMiddleware = async(req: Request, res: Response, next
     return next();
 }
 
-export default checkClientEmailExistsMiddleware
+export default checkUserEmailExistsMiddleware

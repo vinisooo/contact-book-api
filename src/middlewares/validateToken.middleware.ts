@@ -16,7 +16,7 @@ const validateTokenMiddleware = (req: Request, res: Response, next: NextFunction
         if(err){
             throw new AppError("Invalid authorization token", 401);
         }
-        req.loggedClientId = parseInt(decoded.sub);
+        req.loggedUserId = parseInt(decoded.sub);
         return next(); 
     })
     

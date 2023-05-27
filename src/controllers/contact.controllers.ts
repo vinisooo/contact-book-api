@@ -1,18 +1,18 @@
 import { Request, Response } from "express";
 import createContactService from "../services/contact/createContact.service";
-import getClientContactsService from "../services/contact/getClientContacts.service";
+import getUserContactsService from "../services/contact/getUserContacts.service";
 import updateContactService from "../services/contact/updateContact.service";
 import deleteContactService from "../services/contact/deleteContact.service";
-import { noPasswordClientSerializer, noPasswordNoContactsClientSerializer } from "../serializers/client.serializers";
+import { noPasswordUserSerializer, noPasswordNoContactsUserSerializer } from "../serializers/user.serializers";
 
 const createContactController = async(req: Request, res: Response): Promise<Response> => {
-    const createdContact = await createContactService(req.body, req.loggedClientId);
+    const createdContact = await createContactService(req.body, req.loggedUserId);
     
     return res.status(201).json(createdContact);
 }
 
-const getClientContactsController = async(req: Request, res: Response): Promise<Response> => {
-    const contacts = await getClientContactsService(Number(req.params.id));
+const getUserContactsController = async(req: Request, res: Response): Promise<Response> => {
+    const contacts = await getUserContactsService(Number(req.params.id));
 
     return res.status(200).json(contacts);
 }
@@ -31,10 +31,10 @@ const deleteContactController = async(req: Request, res: Response): Promise<Resp
 
 const retrieveContactController = async(req: Request, res: Response): Promise<Response> =>{
     const contact = req.contactById;
-    const serializedClient = noPasswordNoContactsClientSerializer.parse(contact.client);
-    const serializedContact = {...contact, client: serializedClient}
+    const serializedUser = noPasswordNoContactsUserSerializer.parse(contact.user);
+    const serializedContact = {...contact, user: serializedUser}
     
     return res.status(200).json(serializedContact);
 }
 
-export { createContactController, getClientContactsController, updateContactController, deleteContactController, retrieveContactController }
+export { createContactController, getUserContactsController, updateContactController, deleteContactController, retrieveContactController }

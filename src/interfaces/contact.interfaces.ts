@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { clientReqSerializer } from "../serializers/client.serializers";
+import { userReqSerializer } from "../serializers/user.serializers";
 
-type iContactReq = z.infer<typeof clientReqSerializer>
+type iContactReq = z.infer<typeof userReqSerializer>
 
 export { iContactReq };

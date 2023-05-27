@@ -2,13 +2,13 @@ import { Repository } from "typeorm"
 import { Contact } from "../../entities/contacts.entities"
 import { AppDataSource } from "../../data-source"
 
-const getClientContactsService = async(clientId: number) => {
+const getUserContactsService = async(userId: number) => {
     const contactRepository: Repository<Contact> = AppDataSource.getRepository(Contact);
 
     const contacts = await contactRepository.find({
         where: {
-            client:{
-                id: clientId
+            user:{
+                id: userId
             }
         }
     })
@@ -18,4 +18,4 @@ const getClientContactsService = async(clientId: number) => {
     return contacts
 }
 
-export default getClientContactsService
+export default getUserContactsService

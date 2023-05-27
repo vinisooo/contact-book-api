@@ -1,15 +1,15 @@
 import { Repository } from "typeorm"
-import { Client } from "../../entities/clients.entities"
+import { User } from "../../entities/users.entities"
 import { AppDataSource } from "../../data-source"
-import { iClientLogin } from "../../interfaces/client.interfaces";
+import { iUserLogin } from "../../interfaces/user.interfaces";
 import { AppError } from "../../error";
 import { compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-const clientLoginService = async(data: iClientLogin) => {
-    const clientRepository: Repository<Client> = AppDataSource.getRepository(Client);
+const userLoginService = async(data: iUserLogin) => {
+    const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
-    const foundByEmail = await clientRepository.findOneBy({email: data.email})
+    const foundByEmail = await userRepository.findOneBy({email: data.email})
     
     if(!foundByEmail){
         throw new AppError("Invalid email or password", 403);
@@ -34,4 +34,4 @@ const clientLoginService = async(data: iClientLogin) => {
     return token;
 }
 
-export default clientLoginService
+export default userLoginService
