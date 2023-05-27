@@ -4,9 +4,9 @@ import { noUserContactSerializer } from "./contact.serializers";
 
 const userSerializer = z.object({
     id: z.number(),
-    name: z.string().max(256),
-    email: z.string().email().max(256),
-    password: z.string().max(256),
+    name: z.string().min(3).max(126),
+    email: z.string().email().max(126),
+    password: z.string().min(6).max(126).regex(/^(?=.*[a-z])(?=.*[A-Z])/g, "The password must include at least one upper case and one lower case character"),
     phone: z.string().max(20).regex(phoneRegex, "Invalid phone number, must be like: +00 00 000000000"),
     createdAt: z.string(),
     contacts: z.array(noUserContactSerializer)
