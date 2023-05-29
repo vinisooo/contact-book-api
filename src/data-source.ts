@@ -11,12 +11,7 @@ const dataSourceConfig = (): DataSourceOptions => {
     const dbUrl: string | undefined = process.env.DATABASE_URL;
 
     if(!dbUrl){
-        throw new Error("Database URL is not defined");
-    }
-
-    const dbEnv: string | undefined = process.env.DATABASE_ENV;
-
-    if(dbEnv !== "dev"){
+        console.log("Using SQLite3 database");
         return {
             type: 'sqlite',
             database: ':memory:',
@@ -25,6 +20,7 @@ const dataSourceConfig = (): DataSourceOptions => {
         };
     }
 
+    console.log("Using PostgresSQL database");
     return{
         type: "postgres",
         url: dbUrl,

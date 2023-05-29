@@ -24,10 +24,10 @@ const userLoginService = async(data: iUserLogin) => {
     const token: string = jwt.sign({
         email: foundByEmail.email
     },
-        process.env.SECRET_KEY!
+        process.env.SECRET_KEY || "secretkey"
     ,
     {
-        expiresIn: process.env.EXPIRES_IN,
+        expiresIn: process.env.EXPIRES_IN || "24h",
         subject: foundByEmail.id.toString()
     })
 

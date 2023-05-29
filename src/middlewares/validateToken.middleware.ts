@@ -12,7 +12,7 @@ const validateTokenMiddleware = (req: Request, res: Response, next: NextFunction
     token = token?.split(" ")[1];
 
 
-    jwt.verify(token, process.env.SECRET_KEY!, (err:unknown, decoded: any)=>{
+    jwt.verify(token, process.env.SECRET_KEY || "secretkey", (err:unknown, decoded: any)=>{
         if(err){
             throw new AppError("Invalid authorization token", 401);
         }
