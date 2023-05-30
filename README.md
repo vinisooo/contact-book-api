@@ -6,7 +6,7 @@
   <ol>
     <li>
       <p>Clone o repositório:</p>
-      <pre><code>git clone &lt;https://github.com/vinisooo/contact-book-api.git);</code></pre>
+      <pre><code>git clone &lt;https://github.com/vinisooo/contact-book-api.git;</code></pre>
     </li>
     <li>
       <p>Navegue até o diretório do projeto:</p>
