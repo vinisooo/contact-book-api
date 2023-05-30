@@ -91,7 +91,6 @@
   <p>Parâmetros:</p>
   <ul>
     <li><code>id</code> (número) - ID do usuário</li>
-    <li><code>Token</code> (string) - Token de autenticação</li>
   </ul>
   <p>Exemplo de resposta:</p>
   <pre>
