@@ -107,7 +107,7 @@
   <p>Endpoint: <code>DELETE /users/:id</code></p>
   <p>Parâmetros:</p>
   <ul>
-    <li><code>id</code> (número) - ID do usuário</li>
+    <li><code>id</code> (número) - ID do usuário logado</li>
     <li><code>Token</code> (string) - Token de autenticação</li>
   </ul>
   <p>Resposta: <code>204 No Content</code></p>
@@ -116,7 +116,7 @@
   <p>Endpoint: <code>PATCH /users/:id</code></p>
   <p>Parâmetros:</p>
   <ul>
-    <li><code>id</code> (número) - ID do usuário</li>
+    <li><code>id</code> (número) - ID do usuário logado</li>
     <li><code>Token</code> (string) - Token de autenticação</li>
   </ul>
   <p>Corpo da requisição:</p>
@@ -142,7 +142,7 @@
   <p>Endpoint: <code>GET /users/:id/contacts</code></p>
   <p>Parâmetros:</p>
   <ul>
-    <li><code>id</code> (número) - ID do usuário</li>
+    <li><code>id</code> (número) - ID do usuário logado</li>
     <li><code>Token</code> (string) - Token de autenticação</li>
   </ul>
   <p>Exemplo de resposta:</p>
