@@ -6,7 +6,7 @@
   <ol>
     <li>
       <p>Clone o repositório:</p>
-      <pre><code>git clone &lt;https://github.com/vinisooo/contact-book-api.git&gt;</code></pre>
+      <pre><code>git clone https://github.com/vinisooo/contact-book-api.git</code></pre>
     </li>
     <li>
       <p>Navegue até o diretório do projeto:</p>
@@ -26,7 +26,7 @@
     </li>
     <li>
       <p>Acesse o front-end do projeto:</p>
-      <a href="https://github.com/vinisooo/contact-book-front">Ver repositório</a>
+      <a href="https://github.com/vinisooo/contact-book-front">Ver repositório</a><br>
       <a href="https://contact-book-front-gules.vercel.app/login">Acessar front-end do projeto</a>
     </li>
   </ol>
