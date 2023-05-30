@@ -6,7 +6,7 @@
   <ol>
     <li>
       <p>Clone o repositório:</p>
-      <pre><code>git clone &lt;https://github.com/vinisooo/contact-book-api.git;</code></pre>
+      <pre><code>git clone &lt;https://github.com/vinisooo/contact-book-api.git&gt;</code></pre>
     </li>
     <li>
       <p>Navegue até o diretório do projeto:</p>
@@ -19,6 +19,15 @@
     <li>
       <p>Inicie a API localmente:</p>
       <pre><code>npm run dev</code></pre>
+    </li>
+    <li>
+      <p>Pronto! Agora a API deverá estar rodando localmente na porta 3001</p>
+      <pre><code>http://localhost:3001</code></pre>
+    </li>
+    <li>
+      <p>Acesse o front-end do projeto:</p>
+      <a href="https://github.com/vinisooo/contact-book-front">Ver repositório</a>
+      <a href="https://contact-book-front-gules.vercel.app/login">Acessar front-end do projeto</a>
     </li>
   </ol>
   
