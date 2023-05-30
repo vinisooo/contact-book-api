@@ -6,11 +6,11 @@
   <ol>
     <li>
       <p>Clone o repositório:</p>
-      <pre><code>git clone &lt;URL do repositório&gt;</code></pre>
+      <pre><code>git clone &lt;https://github.com/vinisooo/contact-book-api.git);</code></pre>
     </li>
     <li>
       <p>Navegue até o diretório do projeto:</p>
-      <pre><code>cd nome-do-diretorio-do-projeto</code></pre>
+      <pre><code>cd contact-book-api</code></pre>
     </li>
     <li>
       <p>Instale as dependências do projeto utilizando o npm:</p>
@@ -100,16 +100,7 @@
       "name": "user",
       "email": "user@mail.com",
       "phone": "+55 00 000000000",
-      "createdAt": "2023-05-24",
-      "contacts": [
-        {
-          "id": 2,
-          "name": "user1",
-          "email": "user2@mail.com",
-          "phone": "+55 00 000000000",
-          "createdAt": "2023-05-24"
-        }
-      ]
+      "createdAt": "2023-05-24"
     }
   </pre>
 
